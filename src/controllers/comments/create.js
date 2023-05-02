@@ -2,11 +2,10 @@ const createdcomment = async (req, res) => {
     const {
       session,
       db: { Comment },
-      body: { user_id, comment_body },
+      body: { posts_id, comment_body,user_id },
     } = req;
-  
-    const post = await Comment.create(user_id, comment_body);
-    session.userId = user.id;
+    const post = await Comment.create(posts_id, comment_body,user_id);
+
   
     res.send(post);
   };

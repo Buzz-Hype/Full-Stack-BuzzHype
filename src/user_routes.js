@@ -29,7 +29,7 @@ Router.get('/logged-in-secret', checkAuthentication, (req, res) => {
 
 // Update
 Router.patch('/users/:id', checkAuthentication, userController.update);
-Router.patch('/users/password', checkAuthentication, userController.updatepass)
+Router.patch('/users/:id', checkAuthentication, userController.updatepass)
 
 // Delete
 Router.delete('/users/logout', userController.logout);

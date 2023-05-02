@@ -2,11 +2,11 @@ const deletePost = async (req, res) => {
     const {
       session,
       db: { Posts },
-      body: { user_id },
+      body: { id },
     } = req;
   
-    const post = await Posts.deletePost(user_id);
-    session.userId = user.id;
+    const post = await Posts.delete(id);
+    // session.userId = user.id;
   
     res.send(post);
   };
