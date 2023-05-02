@@ -11,7 +11,7 @@ class Posts {
     static async create(user_id,post_text){
         try{
             const post = await knex.raw('INSERT INTO posts (user_id, post_text) VALUES(?,?) RETURNING *',[user_id,post_text])
-            return post.rows[0]
+            return new Posts(post)
         }
         catch(error){
             console.log(error);
@@ -30,8 +30,8 @@ class Posts {
     }
     static async list(){
         try{
-            const listcomments = await knex.raw('select * FROM posts',[post_id])
-            return listcomments.rows
+            const listcomments = await knex.raw('select * FROM posts',[])
+            return listcomments.map((post) => new Posts(post));
         }
         catch(error){
             console.log(error)

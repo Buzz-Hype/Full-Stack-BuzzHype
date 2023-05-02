@@ -78,10 +78,11 @@ class User {
       return null;
     }
   };
-  update_password = async (password) {
+  update_password = async (password) => {
     try{
       const passwordHash = await hashPassword(password);
       const updatedpassword = await knex.raw('UPDATE users password=? WHERE id=? RETURNING *', [passwordHash,this.id])
+      return updatedpassword ? new User(updatedpassword) : null;
     }
     catch(error){
       console.error(err);
