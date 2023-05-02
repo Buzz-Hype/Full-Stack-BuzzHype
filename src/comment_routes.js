@@ -14,4 +14,4 @@ Router.use(addModels);
 //   });
 Router.post('/comment', commentController.createComment)
 Router.delete('/comment', commentController.deleteComment)
-Router.gey('/comment', commentController.listComments)
+Router.get('/comment', commentController.listComments)
