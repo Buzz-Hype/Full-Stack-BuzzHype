@@ -11,7 +11,7 @@ class Comment{
     static async create(comment_body,user_id){
         try{
           const createdcomment = knex.raw('INSERT INTO comments (comment_body,user_id) VALUES (comment_body,user_id) RETURNING *', [comment_body,user_id])
-        return createdcomment.rows[0]  
+          return new Comment(createdcomment)  
         }
         catch(error){
             console.log(error)
@@ -31,7 +31,7 @@ class Comment{
     static async list(post_id){
         try{
             const listcomments = knex.raw('SELECT * FROM comments WHERE post_id=?',[post_id])
-            return listcomments.rows[0]
+            return listcomments.map((comment) => new Comment(comment));
         }
         catch(error){
             console.log(error)
