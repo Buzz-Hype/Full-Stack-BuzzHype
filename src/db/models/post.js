@@ -30,8 +30,10 @@ class Posts {
     }
     static async list(){
         try{
+
             const {rows} = await knex.raw('select * FROM posts')
             return rows.map((post) => new Posts(post));
+
         }
         catch(error){
             console.log(error)
