@@ -19,10 +19,24 @@ class Posts {
         }
     }
     static async delete(id){
-
+        try{
+            const deletedpost =  await knex.raw('DELETE FROM posts WHERE id= ?', [id])
+            return deletedpost.rows[0]
+        }
+        catch(error){
+            console.log(error)
+            return null
+        }
     }
     static async list(){
-
+        try{
+            const listcomments = await knex.raw('select * FROM posts',[post_id])
+            return listcomments.rows
+        }
+        catch(error){
+            console.log(error)
+            return null
+        }
     }
 }
 module.exports = Posts;
