@@ -6,7 +6,7 @@ const listPosts = async (req, res) => {
     } = req;
   
     const post = await Posts.list( post_id);
-    session.userId = user.id;
+    // session.userId = user.id;
   
     res.send(post);
   };
