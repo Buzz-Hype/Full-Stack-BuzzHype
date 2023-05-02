@@ -14,4 +14,10 @@ Router.use(addModels);
 //   });
 Router.post('/comment', commentController.createComment)
 Router.delete('/comment', commentController.deleteComment)
+<<<<<<< HEAD
 Router.get('/comment', commentController.listComments)
+=======
+Router.get('/comment', commentController.listComments)
+
+module.exports = Router;
+>>>>>>> 7f9fdaee0e227792fa8409ebbd705ee3e9dd5e0f
