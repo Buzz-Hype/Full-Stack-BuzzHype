@@ -8,20 +8,27 @@ class Comment{
         this.post_text = comment_body;
       }
 
-    static async create(comment_body,user_id,post_id){
+    static async create(post_id, comment_body,user_id){
         try{
-          const createdcomment = knex.raw('INSERT INTO comments (post_id,user_id,comment_body) VALUES (?,?,?) RETURNING *', [post_id,this.user_id,comment_body])
-          return new Comment(createdcomment)  
-        }
-        catch(error){
-            console.log(error)
-            return null
-        }
+
+            const createdcomment = await knex.raw(`
+                INSERT INTO comments (posts_id,user_id,comment_body) 
+                VALUES (?,?,?) 
+                RETURNING *
+            `, [post_id,user_id,comment_body])
+            console.log(createdcomment)
+            return new Comment(createdcomment.rows[0])
+          }
+          catch(error){
+              console.log(error)
+              return null
+          }
+
     }
     static async delete(id){
         try{
-        const deletedcomment = knex.raw('DELETE FROM comments WHERE id=? RETURNING *',[id])
-        return deletedcomment.rows[0]
+            const deletedpost =  await knex.raw('DELETE FROM comments WHERE id= ?', [id])
+            return deletedpost.rows[0]
         }
         catch(error){
             console.log(error)
@@ -30,8 +37,11 @@ class Comment{
     }
     static async list(post_id){
         try{
-            const listcomments = knex.raw('SELECT * FROM comments WHERE post_id=?',[post_id])
-            return listcomments.map((comment) => new Comment(comment));
+
+            const {rows} = await knex.raw('SELECT * FROM comments WHERE posts_id=?',[post_id])
+            console.log(rows)
+            return rows.map((comment) => new Comment(comment));
+
         }
         catch(error){
             console.log(error)

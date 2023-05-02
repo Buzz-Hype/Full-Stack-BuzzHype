@@ -6,7 +6,11 @@ const deletePost = async (req, res) => {
     } = req;
   
     const post = await Posts.delete(id);
+<<<<<<< HEAD
     session.userId = user.id;
+=======
+    // session.userId = user.id;
+>>>>>>> main
   
     res.send(post);
   };

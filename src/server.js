@@ -10,13 +10,13 @@ const logRoutes = require('./middleware/log-routes');
 // const routes = require('./routes');
 
 const app = express();
-
+app.use(express.json());
 app.use(handleCookieSessions);
 app.use(post_routes);
 app.use(user_routes);
 app.use(comment_routes);
 app.use(logRoutes);
-app.use(express.json());
+
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
 // app.use('/api', routes);

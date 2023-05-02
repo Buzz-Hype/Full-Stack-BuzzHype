@@ -14,7 +14,11 @@ Router.use(addModels);
 //   });
 
 Router.post('/post', postController.create)
+<<<<<<< HEAD
 Router.delete('/post/id', postController.deletepost)
+=======
+Router.delete('/post/:id', postController.deletepost)
+>>>>>>> main
 Router.get('/post', postController.list)
 
 module.exports = Router;
