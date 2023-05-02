@@ -6,11 +6,6 @@ const createUser = async (req, res) => {
   } = req;
   
   const user = await User.create(username, password);
-
-  if(!user){
-    res.sendStatus(404)
-  }
-
   session.userId = user.id;
 if(!user){
   res.sendStatus(404)
