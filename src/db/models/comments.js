@@ -8,9 +8,9 @@ class Comment{
         this.post_text = comment_body;
       }
 
-    static async create(comment_body,user_id){
+    static async create(comment_body,user_id,post_id){
         try{
-          const createdcomment = knex.raw('INSERT INTO comments (comment_body,user_id) VALUES (comment_body,user_id) RETURNING *', [comment_body,user_id])
+          const createdcomment = knex.raw('INSERT INTO comments (post_id,user_id,comment_body) VALUES (?,?,?) RETURNING *', [post_id,this.user_id,comment_body])
           return new Comment(createdcomment)  
         }
         catch(error){
