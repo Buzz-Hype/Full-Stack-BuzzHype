@@ -22,14 +22,16 @@ Router.post('/users/login', userController.login);
 Router.get('/users', userController.list);
 Router.get('/users/:id', userController.show);
 Router.get('/me', userController.showMe);
-checkAuthentication middleware is applied to only to this route (and /logged-in-secret)
+
+// checkAuthentication middleware is applied to only to this route (and /logged-in-secret)
+
 Router.get('/logged-in-secret', checkAuthentication, (req, res) => {
   res.send({ msg: 'The secret is: there is no secret.' });
 });
 
 // Update
 Router.patch('/users/:id', checkAuthentication, userController.update);
-Router.patch('/users/password', checkAuthentication, userController.updatepass)
+Router.patch('/users/:id', checkAuthentication, userController.updatepass)
 
 // Delete
 Router.delete('/users/logout', userController.logout);
