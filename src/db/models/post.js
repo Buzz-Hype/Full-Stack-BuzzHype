@@ -11,7 +11,7 @@ class Posts {
     static async create(user_id,post_text){
         try{
             const post = await knex.raw('INSERT INTO posts (user_id, post_text) VALUES(?,?) RETURNING *',[user_id,post_text])
-            return new Posts(post)
+            return new Posts(post.rows[0])
         }
         catch(error){
             console.log(error);
