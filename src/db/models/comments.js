@@ -16,7 +16,6 @@ class Comment{
                 VALUES (?,?,?) 
                 RETURNING *
             `, [post_id,user_id,comment_body])
-            console.log(createdcomment)
             return new Comment(createdcomment.rows[0])
           }
           catch(error){
@@ -39,7 +38,6 @@ class Comment{
         try{
 
             const {rows} = await knex.raw('SELECT * FROM comments WHERE posts_id=?',[post_id])
-            console.log(rows)
             return rows.map((comment) => new Comment(comment));
 
         }

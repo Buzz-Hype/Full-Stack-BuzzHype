@@ -4,7 +4,6 @@ const deletedcomment = async (req, res) => {
       db: { Comment },
       body: { id },
     } = req;
-  console.log(id)
     const post = await Comment.delete( id);
     // session.userId = user.id;
   
