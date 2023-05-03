@@ -1,25 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./styles/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   <script type="module" src="./scripts/login.js"></script>
   <title>Log in</title>
 </head>
+
 <body>
   <nav id="main-nav"></nav>
   <main>
-    <h1 id="log-in">Log In</h1>
-    <form id="create-form" aria-describedby="log-in">
-      <label for="username">Username</label>
-      <input type="text" name="username" id="username" autocomplete="username">
-      <label for="password">Password</label>
-      <input type="password" name="password" id="password" autocomplete="password">
-
-      <button type="submit">Log in!</button>
-    </form>
+    <div class="container">
+    <div class="columns is-justify-content-center">
+      <div class="column is-6 has-text-centered">
+        <p class="is-size-2">Easy-Echos</p>
+        <p class="is-family-monospace is-size-5">A platform that Echos your opinion</p>
+      </div>
+      <div class="column is-6 is-flex is-align-items-center" id="log-in">
+        <div class="box columns is-flex-direction-column is-align-items-center">
+          
+          <div class="column is-flex has-text-centered">
+            <h1 id="log-in">Log In</h1>
+          </div>
+          <div class="column is-flex">
+            <form id="create-form" aria-describedby="log-in">
+              <label for="username">Username</label>
+              <input type="text" name="username" id="username" autocomplete="username">
+            </form>
+          </div>
+          <div class="column is-flex">
+            <form id="login-form" aria-describedby="log-in">
+              <label for="password">Password</label>
+              <input type="password" name="password" id="password" autocomplete="password">
+            </form>
+          </div>
+          <div class="column has-text-centered">
+            <button type="submit">Log in!</button>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
   </main>
 </body>
+
+
+
+
 </html>

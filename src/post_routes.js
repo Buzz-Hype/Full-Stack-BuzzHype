@@ -13,8 +13,11 @@ Router.use(addModels);
 //     res.status(200).send({ count: session.viewCount });
 //   });
 
-Router.post('/post', postController.create)
-Router.delete('/post', postController.deletepost)
-Router.get('/post', postController.list)
+Router.get('/posts', postController.list)
+Router.post('/posts', postController.create)
+
+
+Router.delete('/posts/:id', postController.deletepost)
+
 
 module.exports = Router;
