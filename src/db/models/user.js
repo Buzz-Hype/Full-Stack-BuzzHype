@@ -4,10 +4,10 @@ const { hashPassword, isValidPassword } = require('../../utils/auth-utils');
 class User {
   #passwordHash = null;
 
-  constructor({ id, username, password_hash }) {
+  constructor({ id, username, password }) {
     this.id = id;
     this.username = username;
-    this.#passwordHash = password_hash;
+    this.#passwordHash = password;
   }
 
   static async list() {
@@ -35,7 +35,8 @@ class User {
   static async findByUsername(username) {
     try {
       const query = 'SELECT * FROM users WHERE username = ?';
-      const { rows: [user] } = await knex.raw(query, [username]);
+      const result  = await knex.raw(query, [username]);
+      const { rows: [user] } = result;
       return user ? new User(user) : null;
     } catch (err) {
       console.error(err);
@@ -59,7 +60,7 @@ class User {
 
   static async deleteAll() {
     try {
-      return knex.raw('TRUNCATE users;');
+      return knex.raw('TRUNCATE users');
     } catch (err) {
       console.error(err);
       return null;

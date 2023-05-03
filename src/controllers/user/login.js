@@ -4,8 +4,9 @@ const loginUser = async (req, res) => {
     db: { User },
     body: { username, password },
   } = req;
-
   const user = await User.findByUsername(username);
+  console.log(user);
+  
   if (!user) return res.sendStatus(404);
 
   const isPasswordValid = await user.isValidPassword(password);
