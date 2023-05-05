@@ -12,10 +12,10 @@ const main = async () => {
   setNav(!!user);
 
   const [secret, _err] = await handleFetch('/logged-in-secret');
-  console.log('secret, _err:', secret, _err);
-  if (secret) {
-    document.querySelector('#secret-message').textContent = secret.msg;
-  }
+  // console.log('secret, _err:', secret, _err);
+  // if (secret) {
+  //   document.querySelector('#secret-message').textContent = secret.msg;
+  // }
   let posts = await handleFetch('/post')
   posts = posts[0]
   let postsection = document.getElementById('post_section')
