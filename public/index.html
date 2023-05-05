@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./styles/style.css">
-  <script type="module" src="./scripts/index.js"></script>
+  <script type="module" src="./scripts/index.js" defer></script>
   <title>Auth Example</title>
 </head>
 <body>
@@ -17,6 +17,22 @@
       <h2>THE SECRET</h2>
       <p id="secret-message">???</p>
     </section>
+    <div id="feed-section">
+      <h1>Feed-section</h1>
+      <div id="post_section"></div>
+    </div>
   </main>
+
+  <div class="model-container" id="model-container">
+    <div class="model">
+      <form class="comment-form" aria-describedby="log-in">
+        <h1 id="createpostid"></h1>
+        <label for="Comment_body">Your Comment</label>
+        <input type="text" name="Comment_body" id="commentinput">
+        <input id="postecho" type="submit" Post Echo/>
+      </form> 
+      <button id="close-commentcreate">close</button>
+    </div>
+  </div>
 </body>
 </html>
