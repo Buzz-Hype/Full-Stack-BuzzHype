@@ -22,7 +22,6 @@ class Posts {
     static async find(id){
         try{
             const findpost = await knex.raw('SELECT * FROM posts WHERE id =?', [id]);
-            console.log(findpost)
             if(!findpost){
                 return null;
             }
@@ -48,7 +47,7 @@ class Posts {
     static async list(){
         try{
 
-            const {rows} = await knex.raw('SELECT posts.*, username FROM posts JOIN users On posts.user_id = users.id')
+            const {rows} = await knex.raw('SELECT posts.*, username FROM posts JOIN users On posts.user_id = users.id ORDER BY posts.id DESC')
             return rows.map((post) => new Posts(post));
 
         }

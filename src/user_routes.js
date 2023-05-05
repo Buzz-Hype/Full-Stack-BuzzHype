@@ -1,12 +1,11 @@
-const express = require('express');
+const userRouter = require('express').Router()
 const userController = require('./controllers/user');
 const addModels = require('./middleware/add-models');
 const checkAuthentication = require('./middleware/check-authentication');
 
-const Router = express.Router();
-Router.use(addModels);
+userRouter.use(addModels);
 
-Router.get('/cookieCounter', (req, res) => {
+userRouter.get('/cookieCounter', (req, res) => {
   const { session } = req;
   console.log(session);
   session.viewCount = (session.viewCount || 0) + 1;
@@ -15,25 +14,25 @@ Router.get('/cookieCounter', (req, res) => {
 });
 
 // Create
-Router.post('/users', userController.create);
-Router.post('/users/login', userController.login);
+userRouter.post('/users', userController.create);
+userRouter.post('/users/login', userController.login);
 
 // Read
-Router.get('/users', userController.list);
-Router.get('/users/:id', userController.show);
-Router.get('/me', userController.showMe);
+userRouter.get('/users', userController.list);
+userRouter.get('/users/:id', userController.show);
+userRouter.get('/me', userController.showMe);
 
 // checkAuthentication middleware is applied to only to this route (and /logged-in-secret)
 
-Router.get('/logged-in-secret', checkAuthentication, (req, res) => {
+userRouter.get('/logged-in-secret', checkAuthentication, (req, res) => {
   res.send({ msg: 'The secret is: there is no secret.' });
 });
 
 // Update
-Router.patch('/users/:id', checkAuthentication, userController.update);
-Router.patch('/users/:id', checkAuthentication, userController.updatepass)
+userRouter.patch('/users/:id', checkAuthentication, userController.update);
+userRouter.patch('/users/:id', checkAuthentication, userController.updatepass)
 
 // Delete
-Router.delete('/users/logout', userController.logout);
+userRouter.delete('/users/logout', userController.logout);
 
-module.exports = Router;
+module.exports = userRouter;

@@ -1,19 +1,12 @@
-const express = require('express');
+const commentRouter = require('express').Router();
 const commentController = require('./controllers/comments');
 const addModels = require('./middleware/add-models');
 
-const Router = express.Router();
-Router.use(addModels);
 
-// Router.get('/cookieCounter', (req, res) => {
-//     const { session } = req;
-//     console.log(session);
-//     session.viewCount = (session.viewCount || 0) + 1;
-//     console.log(session.viewCount);
-//     res.status(200).send({ count: session.viewCount });
-//   });
-Router.post('/comment', commentController.createComment)
-Router.delete('/comment/:id', commentController.deleteComment)
-Router.get('/comment/:id', commentController.listComments)
+commentRouter.use(addModels);
 
-module.exports = Router;
+commentRouter.post('/comment', commentController.createComment)
+commentRouter.delete('/comment/:id', commentController.deleteComment)
+commentRouter.get('/post/:id/comment', commentController.listComments)
+
+module.exports = commentRouter;
