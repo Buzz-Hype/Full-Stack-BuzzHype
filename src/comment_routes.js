@@ -13,7 +13,7 @@ Router.use(addModels);
 //     res.status(200).send({ count: session.viewCount });
 //   });
 Router.post('/comment', commentController.createComment)
-Router.delete('/comment', commentController.deleteComment)
-Router.get('/comment', commentController.listComments)
+Router.delete('/comment/:id', commentController.deleteComment)
+Router.get('/comment/:id', commentController.listComments)
 
 module.exports = Router;
