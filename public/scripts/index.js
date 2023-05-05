@@ -52,7 +52,7 @@ const main = async () => {
       let button = document.createElement('button')
       let createbutton = document.createElement('button')
       createbutton.id = post.id
-      createbutton.className = "createComment"
+      createbutton.classList.add("createComment")
       createbutton.innerHTML = 'Make Comment'
       button.id = post.id
       button.innerHTML = 'comments'
@@ -69,6 +69,20 @@ const main = async () => {
 };
 
 main();
+
+
+let topBar = document.querySelector('#main-nav')
+topBar.style.display = "none"
+console.log(topBar)
+
+
+
+
+
+
+
+
+
 // async function showcomments(){
 //   document.addEventListener('DOMContentLoaded', () =>{
 //     document.querySelectorAll('.createComment').forEach(item =>{
@@ -83,52 +97,65 @@ main();
 
 
 
-let button =document.getElementById('post_section');
-button.addEventListener('click', getcomments)
+// let button =document.getElementById('post_section');
+// button.addEventListener('click', getcomments)
 
-async function getcomments(e){
-  let text = e.target.innerHTML
-  let posts_id = e.target.id
-  if(text === 'comments'){
-    // let options = await getFetchOptions({"posts_id":posts_id}, 'GET')
-    let comments = await handleFetch(`/comment/${posts_id}`)
-    // comments =comments[0][0]
-    console.log(comments)
-  }
-  else if(text === 'Make Comment'){
-    let modelcontainer = document.getElementById('model-container')
-    modelcontainer.classList.add('show')
-    let h1 = document.getElementById('createpostid')
-    h1.innerHTML = posts_id
-  }
-  else if(text === 'Delete post'){
-    console.log(posts_id)
-    let finaldelete = await handleFetch(`/post/${posts_id}`)
-    console.log(finaldelete)
-  }
+// async function getcomments(e){
+//   let text = e.target.innerHTML
+//   let posts_id = e.target.id
+//   if(text === 'comments'){
+//     // let options = await getFetchOptions({"posts_id":posts_id}, 'GET')
+//     let comments = await handleFetch(`/comment/${posts_id}`)
+//     // comments =comments[0][0]
+//     console.log(comments)
+//   }
+//   else if(text === 'Make Comment'){
+//     let modelcontainer = document.getElementById('model-container')
+//     modelcontainer.classList.add('show')
+//     let h1 = document.getElementById('createpostid')
+//     h1.innerHTML = posts_id
+//   }
+//   else if(text === 'Delete post'){
+//     console.log(posts_id)
+//     let finaldelete = await handleFetch(`/post/${posts_id}`)
+//     console.log(finaldelete)
+//   }
   
-}
+// }
 
 
-let close = document.getElementById('close-commentcreate')
-close.addEventListener('click', event => {
-  let modelcontainer = document.getElementById('model-container')
-  modelcontainer.classList.remove('show')
-})
+// let close = document.getElementById('close-commentcreate')
+// close.addEventListener('click', event => {
+//   let modelcontainer = document.getElementById('model-container')
+//   modelcontainer.classList.remove('is-active')
+// })
 
-let comment = document.querySelector('.comment-form')
-comment.addEventListener('submit', async (event) =>{
-  event.preventDefault();
-  //I need get posts id
-  let open = document.getElementById('createpostid')
-  open = open.innerHTML
-  // console.log(open)
-  const user = await fetchLoggedInUser();
-  console.log(user)
-  let userid = user.id
-  let formdata = event.target.commentinput.value
-  console.log(formdata, userid)
-  let options = await getFetchOptions({"posts_id":open ,"comment_body": formdata, "user_id":userid}, 'POST')
-  console.log(options)
-  let data = await handleFetch('/comment',options)
-});
+// let comment = document.querySelector('.comment-form')
+// comment.addEventListener('submit', async (event) =>{
+//   event.preventDefault();
+//   //I need get posts id
+//   let open = document.getElementById('createpostid')
+//   open = open.innerHTML
+//   // console.log(open)
+//   const user = await fetchLoggedInUser();
+//   console.log(user)
+//   let userid = user.id
+//   let formdata = event.target.commentinput.value
+//   console.log(formdata, userid)
+//   let options = await getFetchOptions({"posts_id":open ,"comment_body": formdata, "user_id":userid}, 'POST')
+//   console.log(options)
+//   let data = await handleFetch('/comment',options)
+// });
+
+//Bulma modal -------
+
+// let modal = document.querySelector('#modal')
+// let createCommentButton = document.querySelector('.createComment')
+
+// console.log(createCommentButton)
+
+// createCommentButton.addEventListener('click', async () =>{
+//   if(modal.classList.contains('modal')){
+//     modal.classList.add('is-active')
+//   }
+// })
