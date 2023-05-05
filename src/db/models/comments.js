@@ -26,7 +26,7 @@ class Comment{
     }
     static async delete(id){
         try{
-            const deletedpost =  await knex.raw('DELETE FROM comments WHERE id= ?', [id])
+            const deletedpost =  await knex.raw('DELETE FROM comments WHERE id= ? RETURNING *', [id])
             return deletedpost.rows[0]
         }
         catch(error){
@@ -34,10 +34,10 @@ class Comment{
             return null
         }
     }
-    static async list(post_id){
+    static async list(posts_id){
         try{
 
-            const {rows} = await knex.raw('SELECT * FROM comments WHERE posts_id=?',[post_id])
+            const {rows} = await knex.raw('SELECT * FROM comments WHERE posts_id=?',[posts_id])
             return rows.map((comment) => new Comment(comment));
 
         }
