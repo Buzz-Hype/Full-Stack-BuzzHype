@@ -8,6 +8,7 @@ exports.up = (knex) => {
         table.integer('user_id').references('id').inTable('users');
         table.string('post_text');
         table.timestamps(true,true);
+        // table.string('user_name').references('username').inTable('users');
       });
 };
 

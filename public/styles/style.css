@@ -59,5 +59,36 @@ nav ul li:first-child {
   #container {
     margin-top: 0;
     padding-top: 0;
-  }
+  }}
+/* .model-container{
+  box-sizing: border-box;
+  /* display: flex;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0; */
+/* } */
+
+.model-container{
+  background-color: cadetblue;
+  display: none;
+  display: flex;
+  opacity: 0;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+.model{
+  background-color: aqua;
+  width: 50%;
+  max-width: 100%;
+}
+
+.show{
+  pointer-events: auto;
+  opacity: 1;
 }
