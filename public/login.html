@@ -10,46 +10,44 @@
   <script type="module" src="./scripts/login.js"></script>
   <title>Log in</title>
 </head>
-
-<body>
+<body style="background-color: #4D4C7D;">
   <nav id="main-nav"></nav>
   <main>
-    <div class="container">
-    <div class="columns is-justify-content-center">
-      <div class="column is-6 has-text-centered">
-        <p class="is-size-2">Easy-Echos</p>
-        <p class="is-family-monospace is-size-5">A platform that Echos your opinion</p>
-      </div>
-      <div class="column is-6 is-flex is-align-items-center" id="log-in">
-        <div class="box columns is-flex-direction-column is-align-items-center">
-          
-          <div class="column is-flex has-text-centered">
-            <h1 id="log-in">Log In</h1>
-          </div>
-          <div class="column is-flex">
+    <div class="container mt-6 pt-6" id="container">
+      <div class="columns is-vcentered is-centered is-variable is-1-mobile is-6-desktop">
+        <div class="column is-half has-text-centered">
+          <h1 style="color: #E9D5CA;" class="is-size-1">Easy-Echo</h1>
+          <p style="color: #E9D5CA;" class="is-family-monospace is-size-4">A platform that Echos your opinion</p>
+          <img src="/unit7/Full-Stack-BuzzHype/assets/EElogoPurple.png" class="mt-2" alt="logo">
+        </div>
+        <div class="column is-half  ">
+          <div class="box" style="background-color: #363062; color: #fff;" id="log-inBox">
+            <h2 class="is-size-3" id="log-in">Log In</h2>
             <form id="create-form" aria-describedby="log-in">
-              <label for="username">Username</label>
-              <input type="text" name="username" id="username" autocomplete="username">
+              <div class="field">
+                <label class="label" style="color: #D36B00;" for="username">Username</label>
+                <div class="control">
+                  <input class="input" type="text" name="username" id="username" autocomplete="username" placeholder="Enter your username">
+                </div>
+              </div>
+              <div class="field">
+                <label class="label" style="color: #D36B00;" for="password">Password</label>
+                <div class="control">
+                  <input class="input" type="password" name="password" id="password" autocomplete="password" placeholder="Enter your password">
+                </div>
+              </div>
+              <div class="field">
+                <div class="control has-text-centered mt-6">
+                  <button style="color: #827397" class="button" type="submit">Log in!</button>
+                </div>
+              </div>
             </form>
-          </div>
-          <div class="column is-flex">
-            <form id="login-form" aria-describedby="log-in">
-              <label for="password">Password</label>
-              <input type="password" name="password" id="password" autocomplete="password">
-            </form>
-          </div>
-          <div class="column has-text-centered">
-            <button type="submit">Log in!</button>
           </div>
         </div>
       </div>
-      </div>
     </div>
-  </div>
   </main>
 </body>
-
-
 
 
 </html>
