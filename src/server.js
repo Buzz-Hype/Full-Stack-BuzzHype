@@ -1,8 +1,8 @@
 const express = require('express');
 const path = require('path');
-const post_routes = require('./post_routes')
-const user_routes = require('./user_routes')
-const comment_routes = require('./comment_routes')
+const postRoutes = require('./post_routes')
+const userRoutes = require('./user_routes')
+const commentRoutes = require('./comment_routes')
 
 // const handleSessions = require('./middleware/handle-sessions');
 const handleCookieSessions = require('./middleware/handle-cookie-sessions');
@@ -18,11 +18,9 @@ app.use(express.static(path.join(__dirname, '..', 'public')));
 app.use(express.json());
 app.use(handleCookieSessions);
 app.use(logRoutes);
-app.use(post_routes);
-app.use(user_routes);
-app.use(comment_routes);
+app.use('/api', userRoutes);
+app.use('/api', postRoutes);
+app.use('/api', commentRoutes);
 
-
-// app.use('/api', routes);
 
 module.exports = app;

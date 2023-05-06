@@ -12,12 +12,15 @@ const main = async () => {
   setNav(!!user);
   let userid = user.id
   console.log(userid)
-  const [secret, _err] = await handleFetch('/logged-in-secret');
-  // console.log('secret, _err:', secret, _err);
-  // if (secret) {
-  //   document.querySelector('#secret-message').textContent = secret.msg;
-  // }
-  let posts = await handleFetch('/post')
+
+  const [secret, _err] = await handleFetch('/api/logged-in-secret');
+
+  console.log('secret, _err:', secret, _err);
+  if (secret) {
+    document.querySelector('#secret-message').textContent = secret.msg;
+  }
+  let posts = await handleFetch('/api/post')
+
   posts = posts[0]
   console.log(posts)
   let postsection = document.getElementById('post_section')
@@ -216,9 +219,10 @@ button.addEventListener('click', getcomments)
 async function getcomments(e){
   let text = e.target.innerHTML
   let posts_id = e.target.id
+
   if(text === 'View Comments'){
     commentsModalSpace.innerText = '';
-    let comments = await handleFetch(`/comment/${posts_id}`)
+    let comments = await handleFetch(`/api/comment/${posts_id}`)
     modal.classList.add('is-active')
     comments =comments[0]
     comments.forEach(comment => {
@@ -228,6 +232,7 @@ async function getcomments(e){
       console.log(commentLi);
     })
     
+
     console.log(comments)
   }
   else if(text === 'Create Comment'){
@@ -239,7 +244,9 @@ async function getcomments(e){
   //for logged in user
   else if(text === 'Delete post'){
     console.log(posts_id)
-    let finaldelete = await handleFetch(`/post/${posts_id}`)
+    const options  = await getFetchOptions({posts_id}, "DELETE")
+    let finaldelete = await handleFetch(`/api/post/${posts_id}`, options)
+
     console.log(finaldelete)
   }
   
@@ -263,9 +270,6 @@ close.addEventListener('click', event => {
 })
 
 
-
-
-
 // let comment = document.querySelector('.comment-form')
 // comment.addEventListener('submit', async (event) =>{
 //   event.preventDefault();
@@ -280,7 +284,7 @@ close.addEventListener('click', event => {
 //   console.log(formdata, userid)
 //   let options = await getFetchOptions({"posts_id":open ,"comment_body": formdata, "user_id":userid}, 'POST')
 //   console.log(options)
-//   let data = await handleFetch('/comment',options)
+//   let data = await handleFetch('/api/comment',options)
 // });
 
 //Bulma modal -------
@@ -295,3 +299,4 @@ close.addEventListener('click', event => {
 //     modal.classList.add('is-active')
 //   }
 // })
+
