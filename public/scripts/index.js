@@ -91,7 +91,7 @@ async function getcomments(e){
   let posts_id = e.target.id
   if(text === 'comments'){
     // let options = await getFetchOptions({"posts_id":posts_id}, 'GET')
-    let comments = await handleFetch(`/api/comment/${posts_id}`)
+    let comments = await handleFetch(`/api//post/${posts_id}/comment`)
     // comments =comments[0][0]
     console.log(comments)
   }
