@@ -32,20 +32,92 @@ const main = async () => {
     deletebut.innerHTML = "Delete post"
     deletebut.id = post.id
     deletebut.className = 'delete'
-    let createbutton = document.createElement('button')
-    createbutton.id = post.id
-    createbutton.className = "createComment"
-    createbutton.innerHTML = 'Make Comment'
-    button.id = post.id
-    button.innerHTML = 'comments'
-    text.innerHTML = post.post_text
-    user.innerHTML = post.username
-    div.appendChild(user)
-    div.appendChild(text)
-    div.appendChild(button)
-    div.appendChild(createbutton)
-    div.appendChild(deletebut)
-    postsection.appendChild(div)
+//------------------
+ //whole card
+ let card = document.createElement('div');
+ card.classList.add('card')
+ // card.style.maxWidth = '50%';
+ card.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.2)';
+
+ //top of card, username
+ let cardHeaderUser = document.createElement('p');
+ cardHeaderUser.classList.add('card-header-title')
+ cardHeaderUser.style.color = '#D36B00';
+ cardHeaderUser.style.webkitTextStroke = '.25px black';
+ //creating card div for text
+ let cardTextDiv = document.createElement('div');
+ cardTextDiv.classList.add('card-content')
+ cardTextDiv.style.backgroundColor = '#827397';
+
+ let cardText = document.createElement('p');
+ cardText.classList.add('content')
+ cardText.style.color = '#FDE2F3';
+
+//  let cardFooterDiv = document.createElement('div')
+//  cardFooter.classList.add('cardFooterDiv')
+
+ let cardFooter = document.createElement('footer')
+ cardFooter.classList.add('card-footer')
+ 
+ 
+
+ let commentButton = document.createElement('a')
+ commentButton.classList.add('card-footer-item')
+ commentButton.innerText = 'View Comments'
+ let createComment = document.createElement('a')
+ createComment.classList.add('card-footer-item')
+ createComment.innerText = 'Create Comment'
+
+ let deleteComment = document.createElement('a')
+ deleteComment.id = post.id
+ deleteComment.classList.add('card-footer-item')
+ deletebut.classList.add('delete')
+ deleteComment.innerText = 'Delete Comment'
+
+ commentButton.id = post.id
+ createComment.id = post.id
+
+ // let button = document.createElement('button')
+ // let createbutton = document.createElement('button')
+ // createbutton.id = post.id
+ // createbutton.className = "createComment"
+ // createbutton.innerHTML = 'Make Comment'
+ // button.id = post.id
+ // button.innerHTML = 'comments'
+ cardText.innerHTML = post.post_text
+ cardHeaderUser.innerHTML = post.username
+ card.appendChild(cardHeaderUser)
+ cardTextDiv.appendChild(cardText)
+ card.appendChild(cardTextDiv)
+ cardFooter.appendChild(commentButton)
+ cardFooter.appendChild(createComment)
+ cardFooter.appendChild(deleteComment)
+ card.appendChild(cardFooter)
+ // card.appendChild(button)
+ // card.appendChild(createbutton)
+ cardsContainer.appendChild(card)
+ postsection.appendChild(cardsContainer)
+
+ card.style.width = '20%';
+
+
+
+
+
+    // let createbutton = document.createElement('button')
+    // createbutton.id = post.id
+    // createbutton.className = "createComment"
+    // createbutton.innerHTML = 'Make Comment'
+    // button.id = post.id
+    // button.innerHTML = 'comments'
+    // text.innerHTML = post.post_text
+    // user.innerHTML = post.username
+    // div.appendChild(user)
+    // div.appendChild(text)
+    // div.appendChild(button)
+    // div.appendChild(createbutton)
+    // div.appendChild(deletebut)
+    // postsection.appendChild(div)
     }else {
       //whole card
       let card = document.createElement('div');
@@ -145,7 +217,7 @@ async function getcomments(e){
   let text = e.target.innerHTML
   let posts_id = e.target.id
   if(text === 'View Comments'){
-    // let options = await getFetchOptions({"posts_id":posts_id}, 'GET')
+    commentsModalSpace.innerText = '';
     let comments = await handleFetch(`/comment/${posts_id}`)
     modal.classList.add('is-active')
     comments =comments[0]

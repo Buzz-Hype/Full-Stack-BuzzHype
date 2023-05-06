@@ -177,3 +177,7 @@ nav ul li:first-child {
 ::-webkit-scrollbar {
   display: none;
 }
+
+/* .card-footer {
+  width: 100%;
+} */
