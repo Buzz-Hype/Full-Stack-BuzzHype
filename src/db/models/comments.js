@@ -2,10 +2,11 @@ const knex = require('../knex');
 
 class Comment{
 
-    constructor({ id, user_id, comment_body }) {
+    constructor({ id, user_id, comment_body, username }) {
         this.id = id;
         this.user_id = user_id;
         this.post_text = comment_body;
+        this.username = username
       }
 
     static async create(post_id, comment_body,user_id){
@@ -37,7 +38,7 @@ class Comment{
     static async list(posts_id){
         try{
 
-            const {rows} = await knex.raw('SELECT * FROM comments WHERE posts_id=?',[posts_id])
+            const {rows} = await knex.raw('SELECT comments.*, username FROM comments JOIN users ON comments.user_id = users.id WHERE posts_id = ?',[posts_id])
             return rows.map((comment) => new Comment(comment));
 
         }
