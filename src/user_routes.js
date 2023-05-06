@@ -25,6 +25,7 @@ userRouter.get('/me', userController.showMe);
 // checkAuthentication middleware is applied to only to this route (and /logged-in-secret)
 
 userRouter.get('/logged-in-secret', checkAuthentication, (req, res) => {
+
   res.send({ msg: 'The secret is: there is no secret.' });
 });
 
