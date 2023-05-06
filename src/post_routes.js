@@ -6,7 +6,7 @@ postRouter.use(addModels);
 
 postRouter.get('/post/:id', postController.find)
 postRouter.post('/post', postController.create)
-// postRouter.patch('/post/:id', postController.update) 
+postRouter.patch('/post/:id', postController.update) 
 postRouter.delete('/post/:id', postController.deletepost)
 postRouter.get('/post', postController.list)
 

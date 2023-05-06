@@ -56,5 +56,13 @@ class Posts {
             return null
         }
     }
+    static async update(id, posts_text){
+        try{
+            let updatatepost = await knex.raw('UPDATE posts SET post_text = ? WHERE posts.id = ?', [posts_text, id])
+        }catch(error){
+            console.log(error);
+            return null 
+        }
+    }
 }
 module.exports = Posts;
