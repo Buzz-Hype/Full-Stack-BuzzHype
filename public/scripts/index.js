@@ -12,12 +12,13 @@ const main = async () => {
   setNav(!!user);
   let userid = user.id
   console.log(userid)
-  const [secret, _err] = await handleFetch('/logged-in-secret');
+  const [secret, _err] = await handleFetch('/api/logged-in-secret');
+
   console.log('secret, _err:', secret, _err);
   if (secret) {
     document.querySelector('#secret-message').textContent = secret.msg;
   }
-  let posts = await handleFetch('/post')
+  let posts = await handleFetch('/api/post')
   posts = posts[0]
   console.log(posts)
   let postsection = document.getElementById('post_section')
@@ -91,7 +92,8 @@ async function getcomments(e){
   let posts_id = e.target.id
   if(text === 'comments'){
     // let options = await getFetchOptions({"posts_id":posts_id}, 'GET')
-    let comments = await handleFetch(`/comment/${posts_id}`)
+    let comments = await handleFetch(`/api/comment/${posts_id}`)
+
     // comments =comments[0][0]
     console.log(comments)
   }
@@ -103,7 +105,9 @@ async function getcomments(e){
   }
   else if(text === 'Delete post'){
     console.log(posts_id)
-    let finaldelete = await handleFetch(`/post/${posts_id}`)
+    const options  = await getFetchOptions({posts_id}, "DELETE")
+    let finaldelete = await handleFetch(`/api/post/${posts_id}`, options)
+
     console.log(finaldelete)
   }
   
@@ -130,5 +134,7 @@ comment.addEventListener('submit', async (event) =>{
   console.log(formdata, userid)
   let options = await getFetchOptions({"posts_id":open ,"comment_body": formdata, "user_id":userid}, 'POST')
   console.log(options)
-  let data = await handleFetch('/comment',options)
+
+  let data = await handleFetch('/api/comment',options)
+
 });
