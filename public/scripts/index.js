@@ -227,9 +227,11 @@ async function getcomments(e){
     comments =comments[0]
     comments.forEach(comment => {
       let commentLi = document.createElement('li')
+      let postId = document.createElement('h1')
+      postId.id = posts_id
       commentLi.innerText = comment.post_text
       commentsModalSpace.appendChild(commentLi)
-      console.log(commentLi);
+      console.log(commentLi, posts_id);
     })
     
 
@@ -239,7 +241,7 @@ async function getcomments(e){
     // let modelcontainer = document.getElementById('model-container')
     modal.classList.add('is-active')
     let h1 = document.getElementById('createpostid')
-    // h1.innerHTML = posts_id
+    h1.innerHTML = posts_id
   }
   //for logged in user
   else if(text === 'Delete post'){
@@ -270,22 +272,23 @@ close.addEventListener('click', event => {
 })
 
 
-// let comment = document.querySelector('.comment-form')
-// comment.addEventListener('submit', async (event) =>{
-//   event.preventDefault();
-//   //I need get posts id
-//   let open = document.getElementById('createpostid')
-//   open = open.innerHTML
-//   // console.log(open)
-//   const user = await fetchLoggedInUser();
-//   console.log(user)
-//   let userid = user.id
-//   let formdata = event.target.commentinput.value
-//   console.log(formdata, userid)
-//   let options = await getFetchOptions({"posts_id":open ,"comment_body": formdata, "user_id":userid}, 'POST')
-//   console.log(options)
-//   let data = await handleFetch('/api/comment',options)
-// });
+let comment = document.querySelector('.comment-form')
+comment.addEventListener('submit', async (event) =>{
+  event.preventDefault();
+  //I need get posts id
+  // let open = document.getElementById('createpostid')
+  let open = event.target.id[1]
+  // console.log(open, 'test')
+  const user = await fetchLoggedInUser();
+  console.log(user)
+  let userid = user.id
+  let formdata = event.target.commentinput.value
+  console.log(formdata, userid)
+  let options = await getFetchOptions({"posts_id":open ,"comment_body": formdata, "user_id":userid}, 'POST')
+  console.log(options)
+
+  let data = await handleFetch('/api/comment',options)
+});
 
 //Bulma modal -------
 
