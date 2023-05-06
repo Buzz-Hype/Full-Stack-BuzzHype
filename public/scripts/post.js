@@ -15,7 +15,7 @@ import {
       let formdata = event.target.password.value
       let userid = user.id
       let options = await getFetchOptions({"post_text": formdata, "user_id":userid}, 'POST')
-      let data = await handleFetch('/post',options)
+      let data = await handleFetch('/api/post',options)
     });
 }
 main()

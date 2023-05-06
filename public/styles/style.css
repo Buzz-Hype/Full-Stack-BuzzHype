@@ -57,10 +57,12 @@ nav ul li:first-child {
 }
 
 /* @media only screen and (max-width: 768px) {
+/* @media only screen and (max-width: 768px) {
   #container {
     margin-top: 0;
     padding-top: 0;
-  } */
+  }
+} */
 
 .model-container{
   box-sizing: border-box;
