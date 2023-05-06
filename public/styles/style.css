@@ -129,4 +129,10 @@ nav ul li:first-child {
   display: flex;
   flex-direction: column;
   height: 100%; /* set the height of the left column to 100% */
+  
 }
+
+.card{
+  max-width: 50%;
+}
+

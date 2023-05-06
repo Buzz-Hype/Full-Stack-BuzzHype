@@ -46,23 +46,52 @@ const main = async () => {
     div.appendChild(deletebut)
     postsection.appendChild(div)
     }else {
-      let div = document.createElement('div');
-      let user = document.createElement('h1');
-      let text = document.createElement('p');
-      let button = document.createElement('button')
-      let createbutton = document.createElement('button')
-      createbutton.id = post.id
-      createbutton.classList.add("createComment")
-      createbutton.innerHTML = 'Make Comment'
-      button.id = post.id
-      button.innerHTML = 'comments'
-      text.innerHTML = post.post_text
-      user.innerHTML = post.username
-      div.appendChild(user)
-      div.appendChild(text)
-      div.appendChild(button)
-      div.appendChild(createbutton)
-      postsection.appendChild(div)
+      //whole card
+      let card = document.createElement('div');
+      card.classList.add('card')
+      //top of card, username
+      let cardHeaderUser = document.createElement('p');
+      cardHeaderUser.classList.add('card-header-title')
+      //creating card div for text
+      let cardTextDiv = document.createElement('div');
+      cardTextDiv.classList.add('card-content')
+
+      let cardText = document.createElement('p');
+      cardText.classList.add('content')
+
+      let cardFooter = document.createElement('footer')
+      cardFooter.classList.add('card-footer')
+
+      let commentButton = document.createElement('a')
+      commentButton.classList.add('card-footer-item')
+      commentButton.innerText = 'View Comments'
+      let createComment = document.createElement('a')
+      createComment.classList.add('card-footer-item')
+      createComment.innerText = 'Create Comment'
+
+      commentButton.id = post.id
+      createComment.id = post.id
+
+      // let button = document.createElement('button')
+      // let createbutton = document.createElement('button')
+      // createbutton.id = post.id
+      // createbutton.className = "createComment"
+      // createbutton.innerHTML = 'Make Comment'
+      // button.id = post.id
+      // button.innerHTML = 'comments'
+      cardText.innerHTML = post.post_text
+      cardHeaderUser.innerHTML = post.username
+      card.appendChild(cardHeaderUser)
+      cardTextDiv.appendChild(cardText)
+      card.appendChild(cardTextDiv)
+      cardFooter.appendChild(commentButton)
+      cardFooter.appendChild(createComment)
+      card.appendChild(cardFooter)
+      // card.appendChild(button)
+      // card.appendChild(createbutton)
+      postsection.appendChild(card)
+
+      card.style.width = '30%';
     }
     
   })
@@ -97,31 +126,32 @@ console.log(topBar)
 
 
 
-// let button =document.getElementById('post_section');
-// button.addEventListener('click', getcomments)
+let button =document.getElementById('post_section');
+button.addEventListener('click', getcomments)
 
-// async function getcomments(e){
-//   let text = e.target.innerHTML
-//   let posts_id = e.target.id
-//   if(text === 'comments'){
-//     // let options = await getFetchOptions({"posts_id":posts_id}, 'GET')
-//     let comments = await handleFetch(`/comment/${posts_id}`)
-//     // comments =comments[0][0]
-//     console.log(comments)
-//   }
-//   else if(text === 'Make Comment'){
-//     let modelcontainer = document.getElementById('model-container')
-//     modelcontainer.classList.add('show')
-//     let h1 = document.getElementById('createpostid')
-//     h1.innerHTML = posts_id
-//   }
-//   else if(text === 'Delete post'){
-//     console.log(posts_id)
-//     let finaldelete = await handleFetch(`/post/${posts_id}`)
-//     console.log(finaldelete)
-//   }
+async function getcomments(e){
+  let text = e.target.innerHTML
+  let posts_id = e.target.id
+  if(text === 'View Comments'){
+    // let options = await getFetchOptions({"posts_id":posts_id}, 'GET')
+    let comments = await handleFetch(`/comment/${posts_id}`)
+    // comments =comments[0][0]
+    console.log(comments)
+  }
+  else if(text === 'Create Comment'){
+    let modelcontainer = document.getElementById('model-container')
+    modelcontainer.classList.add('show')
+    let h1 = document.getElementById('createpostid')
+    h1.innerHTML = posts_id
+  }
+  //for logged in user
+  else if(text === 'Delete post'){
+    console.log(posts_id)
+    let finaldelete = await handleFetch(`/post/${posts_id}`)
+    console.log(finaldelete)
+  }
   
-// }
+}
 
 
 // let close = document.getElementById('close-commentcreate')
