@@ -13,6 +13,7 @@ const main = async () => {
   let userid = user.id
   console.log(userid)
   const [secret, _err] = await handleFetch('/api/logged-in-secret');
+
   console.log('secret, _err:', secret, _err);
   if (secret) {
     document.querySelector('#secret-message').textContent = secret.msg;
@@ -92,6 +93,7 @@ async function getcomments(e){
   if(text === 'comments'){
     // let options = await getFetchOptions({"posts_id":posts_id}, 'GET')
     let comments = await handleFetch(`/api/comment/${posts_id}`)
+
     // comments =comments[0][0]
     console.log(comments)
   }
@@ -105,6 +107,7 @@ async function getcomments(e){
     console.log(posts_id)
     const options  = await getFetchOptions({posts_id}, "DELETE")
     let finaldelete = await handleFetch(`/api/post/${posts_id}`, options)
+
     console.log(finaldelete)
   }
   
@@ -131,5 +134,7 @@ comment.addEventListener('submit', async (event) =>{
   console.log(formdata, userid)
   let options = await getFetchOptions({"posts_id":open ,"comment_body": formdata, "user_id":userid}, 'POST')
   console.log(options)
+
   let data = await handleFetch('/api/comment',options)
+
 });

@@ -5,21 +5,47 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./styles/style.css">
-  <script type="module" src="./scripts/create.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <script type="module" defer src="./scripts/create.js"></script>
   <title>Sign Up</title>
 </head>
-<body>
+<body style="background-color: #4D4C7D;">
   <nav id="main-nav"></nav>
   <main>
-    <h1 id="sign-up">Sign Up Today!</h1>
-    <form id="create-form" aria-describedby="sign-up">
-      <label for="username">Username</label>
-      <input type="text" name="username" id="username" autocomplete="username">
-      <label for="password">Password</label>
-      <input type="password" name="password" id="password" autocomplete="password">
-
-      <button type="submit">Create User</button>
-    </form>
+    <div class="container mt-6 pt-6" id="container">
+      <div class="columns is-vcentered is-centered is-variable is-1-mobile is-6-desktop">
+        <div class="column is-half has-text-centered">
+          <h1 style="color: #E9D5CA;" class="is-size-1">Easy-Echo</h1>
+          <p style="color: #E9D5CA;" class="is-family-monospace is-size-4">A platform that Echos your opinion</p>
+          <img src="/unit7/Full-Stack-BuzzHype/assets/EElogoPurple.png" class="mt-2" alt="logo">
+        </div>
+        <div class="column is-half  ">
+          <div class="box" style="background-color: #363062; color: #fff;" id="log-inBox">
+            <h2 class="is-size-3" id="log-in">Sign Up</h2>
+            <form id="create-form" aria-describedby="sign-up">
+              <div class="field">
+                <label class="label" style="color: #D36B00;" for="username">Username</label>
+                <div class="control">
+                  <input class="input" type="text" name="username" id="username" autocomplete="username" placeholder="Enter your username">
+                </div>
+              </div>
+              <div class="field">
+                <label class="label" style="color: #D36B00;" for="password">Password</label>
+                <div class="control">
+                  <input class="input" type="password" name="password" id="password" autocomplete="password" placeholder="Enter your password">
+                </div>
+              </div>
+              <div class="field">
+                <div class="control has-text-centered mt-6">
+                  <button style="color: #827397" class="button" type="submit">Sign up!</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
 </body>
+
 </html>

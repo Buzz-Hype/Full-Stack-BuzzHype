@@ -47,7 +47,9 @@ class Posts {
     static async list(){
         try{
 
+
             const {rows} = await knex.raw('SELECT posts.*, username FROM posts JOIN users On posts.user_id = users.id ORDER BY posts.id DESC')
+
             return rows.map((post) => new Posts(post));
 
         }

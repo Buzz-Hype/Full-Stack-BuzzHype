@@ -1,5 +1,17 @@
 body {
   font-family: sans-serif;
+  min-height: 100vh;
+}
+
+main {
+  width: 100vw;
+  min-height: 80vh;
+  margin: 0 auto;
+}
+
+.container {
+  width: 80%;
+  height: 50vh;
 }
 
 nav {
@@ -22,6 +34,35 @@ nav ul li:first-child {
   text-align: center;
   border: black 1px dashed;
 }
+
+#log-in{
+  display: flex;
+  justify-content: center;
+}
+
+/* #parent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+
+.has-background-color {
+  background-color: #2D033B;
+  color: #fff; /* set text color to white to contrast with the dark background */
+}
+
+#log-inBox{
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+/* @media only screen and (max-width: 768px) {
+  #container {
+    margin-top: 0;
+    padding-top: 0;
+  }
+} */
+
 /* .model-container{
   box-sizing: border-box;
   /* display: flex;

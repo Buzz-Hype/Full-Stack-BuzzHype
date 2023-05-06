@@ -39,6 +39,7 @@ class Comment{
         try{
 
             const {rows} = await knex.raw('SELECT comments.*, username FROM comments JOIN users ON comments.user_id = users.id WHERE posts_id = ?',[posts_id])
+
             return rows.map((comment) => new Comment(comment));
 
         }
