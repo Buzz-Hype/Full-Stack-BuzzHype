@@ -21,6 +21,7 @@ const main = async () => {
   posts = posts[0]
   console.log(posts)
   let postsection = document.getElementById('post_section')
+  let cardsContainer = document.getElementById('cardsContainer')
   posts.forEach(post =>{
     if(userid === post.user_id){
       let div = document.createElement('div');
@@ -49,18 +50,26 @@ const main = async () => {
       //whole card
       let card = document.createElement('div');
       card.classList.add('card')
+      // card.style.maxWidth = '50%';
+      card.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.2)';
+
       //top of card, username
       let cardHeaderUser = document.createElement('p');
       cardHeaderUser.classList.add('card-header-title')
+      cardHeaderUser.style.color = '#D36B00';
+      cardHeaderUser.style.webkitTextStroke = '.25px black';
       //creating card div for text
       let cardTextDiv = document.createElement('div');
       cardTextDiv.classList.add('card-content')
+      cardTextDiv.style.backgroundColor = '#827397';
 
       let cardText = document.createElement('p');
       cardText.classList.add('content')
+      cardText.style.color = '#FDE2F3';
 
       let cardFooter = document.createElement('footer')
       cardFooter.classList.add('card-footer')
+      
 
       let commentButton = document.createElement('a')
       commentButton.classList.add('card-footer-item')
@@ -89,9 +98,10 @@ const main = async () => {
       card.appendChild(cardFooter)
       // card.appendChild(button)
       // card.appendChild(createbutton)
-      postsection.appendChild(card)
+      cardsContainer.appendChild(card)
+      postsection.appendChild(cardsContainer)
 
-      card.style.width = '30%';
+      card.style.width = '20%';
     }
     
   })
@@ -125,9 +135,11 @@ console.log(topBar)
 
 
 
-
+let modal = document.querySelector('#modal')
+let commentsModalSpace = document.querySelector('#commentsModalSpace')
 let button =document.getElementById('post_section');
 button.addEventListener('click', getcomments)
+
 
 async function getcomments(e){
   let text = e.target.innerHTML
@@ -135,14 +147,22 @@ async function getcomments(e){
   if(text === 'View Comments'){
     // let options = await getFetchOptions({"posts_id":posts_id}, 'GET')
     let comments = await handleFetch(`/comment/${posts_id}`)
-    // comments =comments[0][0]
+    modal.classList.add('is-active')
+    comments =comments[0]
+    comments.forEach(comment => {
+      let commentLi = document.createElement('li')
+      commentLi.innerText = comment.post_text
+      commentsModalSpace.appendChild(commentLi)
+      console.log(commentLi);
+    })
+    
     console.log(comments)
   }
   else if(text === 'Create Comment'){
-    let modelcontainer = document.getElementById('model-container')
-    modelcontainer.classList.add('show')
+    // let modelcontainer = document.getElementById('model-container')
+    modal.classList.add('is-active')
     let h1 = document.getElementById('createpostid')
-    h1.innerHTML = posts_id
+    // h1.innerHTML = posts_id
   }
   //for logged in user
   else if(text === 'Delete post'){
@@ -154,11 +174,25 @@ async function getcomments(e){
 }
 
 
-// let close = document.getElementById('close-commentcreate')
-// close.addEventListener('click', event => {
-//   let modelcontainer = document.getElementById('model-container')
-//   modelcontainer.classList.remove('is-active')
-// })
+
+
+
+
+
+
+
+
+
+
+
+let close = document.getElementById('close-commentcreate')
+close.addEventListener('click', event => {
+  modal.classList.remove('is-active')
+})
+
+
+
+
 
 // let comment = document.querySelector('.comment-form')
 // comment.addEventListener('submit', async (event) =>{
