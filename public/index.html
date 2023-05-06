@@ -1,29 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./styles/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   <script type="module" src="./scripts/index.js" defer></script>
   <title>Auth Example</title>
 </head>
-<body>
-  <nav id="main-nav"></nav>
+
+<body style="background-color: #363062;">
+  <nav style="background-color: #E9D5CA;" id="main-nav"></nav>
   <main>
-    <h1>Auth Example</h1>
-    <p>If you're logged in, you can see the secret message below:</p>
-    <section id="secret-container">
-      <h2>THE SECRET</h2>
-      <p id="secret-message">???</p>
-    </section>
-    <div id="feed-section">
-      <h1>Feed-section</h1>
-      <div id="post_section"></div>
+    <div class="columns" id="mainPage">
+      <div class="column is-one-quarter" id="feed-section" style="background-color: #4D4C7D; width: 225px;">
+        <img src="/assets/EElogoPurple.png" style="width: 100%; height: auto;" alt="logo">
+        <nav id="sideBar">
+          <a class="is-size-3 pt-6 mt-3" href="./user.html">Profile</a>
+          <a class="is-size-3 pt-6 mt-3" href="./post.html">Make Post</a>
+          <a class="is-size-3 pt-6 mt-3" href="#">Sign Out</a>
+        </nav>
+      </div>
+      <div class="column" id="post_section" style="width: 75%;">
+        <div id="cardsContainer">
+          <!-- content of the right column here -->
+
+        </div>
+      </div>
     </div>
+
   </main>
 
-  <div class="model-container" id="model-container">
+  <!-- Making Comments Modal -->
+  <div class="modal" id="modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p id="modalTitle" class="modal-card-title">Comments</p>
+        <button id="close-commentcreate">Close</button>
+      </header>
+      <section class="modal-card-body">
+        <!-- <h3 class="has-text-weight-bold is-size-5">Ingredients</h3> -->
+        <ul id="commentsModalSpace"></ul>
+        <!-- <h3 class="has-text-weight-bold mt-5 is-size-5">Instructions</h3> -->
+        <!-- <p id="instructionsText"></p> -->
+      </section>
+      <footer class="modal-card-foot" style="text-align: center;">
+        <form class='control' id="search">
+          <input class="input is-rounded is-info" autocomplete="off" type="text" placeholder="Type Your Comment Here!"
+            id="searchBar">
+        </form>
+      </footer>
+
+    </div>
+  </div>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="model-container" id="model-container">
     <div class="model">
       <form class="comment-form" aria-describedby="log-in">
         <h1 id="createpostid"></h1>
@@ -33,6 +86,11 @@
       </form> 
       <button id="close-commentcreate">close</button>
     </div>
-  </div>
-</body>
-</html>
+  </div> -->
+
+<!-- <h1>Auth Example</h1>
+    <p>If you're logged in, you can see the secret message below:</p>
+    <section id="secret-container">
+      <h2>THE SECRET</h2>
+      <p id="secret-message">???</p>
+    </section> -->
