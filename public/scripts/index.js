@@ -62,14 +62,17 @@ const main = async () => {
  let cardFooter = document.createElement('footer')
  cardFooter.classList.add('card-footer')
  
+ let cardFooterDiv = document.createElement('div')
+ cardFooterDiv.style.width = '100%';
+ cardFooterDiv.style.height = '75%';
  
 
  let commentButton = document.createElement('a')
  commentButton.classList.add('card-footer-item')
  commentButton.innerText = 'View Comments'
- let createComment = document.createElement('a')
- createComment.classList.add('card-footer-item')
- createComment.innerText = 'Create Comment'
+//  let createComment = document.createElement('a')
+//  createComment.classList.add('card-footer-item')
+//  createComment.innerText = 'Create Comment'
 
  let deleteComment = document.createElement('a')
  deleteComment.id = post.id
@@ -78,9 +81,13 @@ const main = async () => {
  deleteComment.innerText = 'Delete Comment'
 
  commentButton.id = post.id
- createComment.id = post.id
 
- console.log(createComment.id)
+ cardFooterDiv.appendChild(commentButton)
+ cardFooterDiv.appendChild(deleteComment)
+
+//  createComment.id = post.id
+
+//  console.log(createComment.id)
 
  // let button = document.createElement('button')
  // let createbutton = document.createElement('button')
@@ -94,9 +101,9 @@ const main = async () => {
  card.appendChild(cardHeaderUser)
  cardTextDiv.appendChild(cardText)
  card.appendChild(cardTextDiv)
- cardFooter.appendChild(commentButton)
- cardFooter.appendChild(createComment)
- cardFooter.appendChild(deleteComment)
+ cardFooter.appendChild(cardFooterDiv)
+//  cardFooter.appendChild(createComment)
+//  cardFooter.appendChild(deleteComment)
  card.appendChild(cardFooter)
  // card.appendChild(button)
  // card.appendChild(createbutton)
@@ -151,14 +158,14 @@ const main = async () => {
       let commentButton = document.createElement('a')
       commentButton.classList.add('card-footer-item')
       commentButton.innerText = 'View Comments'
-      let createComment = document.createElement('a')
-      createComment.classList.add('card-footer-item')
-      createComment.innerText = 'Create Comment'
+      // let createComment = document.createElement('a')
+      // createComment.classList.add('card-footer-item')
+      // createComment.innerText = 'Create Comment'
 
       commentButton.id = post.id
-      createComment.id = post.id
+      // createComment.id = post.id
 
-      console.log(createComment.id)
+      // console.log(createComment.id)
       // let button = document.createElement('button')
       // let createbutton = document.createElement('button')
       // createbutton.id = post.id
@@ -172,7 +179,7 @@ const main = async () => {
       cardTextDiv.appendChild(cardText)
       card.appendChild(cardTextDiv)
       cardFooter.appendChild(commentButton)
-      cardFooter.appendChild(createComment)
+      // cardFooter.appendChild(createComment)
       card.appendChild(cardFooter)
       // card.appendChild(button)
       // card.appendChild(createbutton)
@@ -210,11 +217,31 @@ console.log(topBar)
 //   })
 // }
 // showcomments()
-
-
-
 let modal = document.querySelector('#modal')
 let commentsModalSpace = document.querySelector('#commentsModalSpace')
+
+let titleModal = document.querySelector('#modalTitle')
+titleModal.style.color = '#E3CCAE'
+
+let topModal = document.querySelector('.modal-card-head')
+topModal.style.backgroundColor = '#5C469C';
+
+let middleModal = document.querySelector('.modal-card-body')
+middleModal.style.backgroundColor = '#1D267D';
+
+let bottomModal = document.querySelector('.modal-card-foot')
+bottomModal.style.backgroundColor = '#D4ADFC'
+bottomModal.classList.add('is-justify-content-center')
+bottomModal.classList.add('is-align-items-center')
+
+let submit = document.querySelector('.commentSumbitButton')
+submit.classList.add('button')
+submit.classList.add('is-rounded')
+
+let closeModal = document.getElementById('close-commentcreate')
+closeModal.classList.add('button')
+
+
 let button =document.getElementById('post_section');
 button.addEventListener('click', getcomments)
 
@@ -230,6 +257,9 @@ async function getcomments(e){
     comments =comments[0]
     comments.forEach(comment => {
       let commentLi = document.createElement('li')
+      commentLi.style.color = '#E3CCAE'
+      commentLi.classList.add('is-size-5')
+
       // let postId = document.createElement('h1')
       // postId.id = posts_id
       commentLi.innerText = comment.post_text
@@ -247,7 +277,7 @@ async function getcomments(e){
     modal.classList.add('is-active')
     let h1 = document.getElementById('createpostid')
     // h1.innerHTML = posts_id
-    let submit = document.querySelector('.commentSumbitButton')
+    
     submit.id = posts_id
   }
   //for logged in user
@@ -273,8 +303,8 @@ async function getcomments(e){
 
 
 
-let close = document.getElementById('close-commentcreate')
-close.addEventListener('click', event => {
+
+closeModal.addEventListener('click', event => {
   modal.classList.remove('is-active')
 })
 
