@@ -14,10 +14,6 @@ const main = async () => {
 
   const [secret, _err] = await handleFetch('/api/logged-in-secret');
 
-  // console.log('secret, _err:', secret, _err);
-  // if (secret) {
-  //   document.querySelector('#secret-message').textContent = secret.msg;
-  // }
   let posts = await handleFetch('/api/post')
 
   posts = posts[0]
@@ -136,7 +132,6 @@ const main = async () => {
       card.classList.add('card')
       card.classList.add('animate__animated')
       card.classList.add('animate__backInUp')
-      // card.style.maxWidth = '50%';
       card.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.2)';
 
       //top of card, username
@@ -160,31 +155,14 @@ const main = async () => {
       let commentButton = document.createElement('a')
       commentButton.classList.add('card-footer-item')
       commentButton.innerText = 'View Comments'
-      // let createComment = document.createElement('a')
-      // createComment.classList.add('card-footer-item')
-      // createComment.innerText = 'Create Comment'
-
       commentButton.id = post.id
-      // createComment.id = post.id
-
-      // console.log(createComment.id)
-      // let button = document.createElement('button')
-      // let createbutton = document.createElement('button')
-      // createbutton.id = post.id
-      // createbutton.className = "createComment"
-      // createbutton.innerHTML = 'Make Comment'
-      // button.id = post.id
-      // button.innerHTML = 'comments'
       cardText.innerHTML = post.post_text
       cardHeaderUser.innerHTML = post.username
       card.appendChild(cardHeaderUser)
       cardTextDiv.appendChild(cardText)
       card.appendChild(cardTextDiv)
       cardFooter.appendChild(commentButton)
-      // cardFooter.appendChild(createComment)
       card.appendChild(cardFooter)
-      // card.appendChild(button)
-      // card.appendChild(createbutton)
       cardsContainer.appendChild(card)
       postsection.appendChild(cardsContainer)
 
@@ -207,18 +185,6 @@ topBar.style.display = "none";
 
 
 
-
-
-// async function showcomments(){
-//   document.addEventListener('DOMContentLoaded', () =>{
-//     document.querySelectorAll('.createComment').forEach(item =>{
-//       item.addEventListener('click', async (e) =>{
-//         console.log('test')
-//       })
-//     })
-//   })
-// }
-// showcomments()
 let modal = document.querySelector('#modal')
 let commentsModalSpace = document.querySelector('#commentsModalSpace')
 
@@ -255,20 +221,31 @@ async function getcomments(e) {
 
   if(text === 'View Comments'){
     commentsModalSpace.innerText = '';
+    let user = await  fetchLoggedInUser()
     let comments = await handleFetch(`/api/post/${posts_id}/comment`)
     modal.classList.add('is-active')
     comments = comments[0]
     comments.forEach(comment => {
+      console.log(comment)
+      console.log(user.id)
       let commentLi = document.createElement('li')
       commentLi.style.color = '#E3CCAE'
       commentLi.classList.add('is-size-5')
-
-      // let postId = document.createElement('h1')
-      // postId.id = posts_id
+      let username = document.createElement('h1')
+      let br = document.createElement('br')
+      username.innerHTML = comment.username + ':'
+      username.style.color = '#E3CCAE'
       commentLi.innerText = comment.post_text
+      commentsModalSpace.appendChild(username)
       commentsModalSpace.appendChild(commentLi)
-      // console.log(commentLi, postId);
-      
+      commentsModalSpace.appendChild(br)
+      if(user.id === comment.user_id){
+        let delcomment = document.createElement('button')
+        delcomment.innerHTML = "delete"
+        delcomment.id = comment.id
+        commentsModalSpace.appendChild(delcomment)
+      }
+      commentsModalSpace.appendChild(br)
     })
     let submit = document.querySelector('.commentSumbitButton')
       submit.id = posts_id
@@ -310,15 +287,7 @@ closeModal.addEventListener('click', event => {
 })
 
 
-// let aTags = document.querySelectorAll('a');
-//  let postId = undefined;
 
-// aTags.forEach(function(a) {
-//   a.addEventListener('click', function() {
-//     postId = a.id;
-//     console.log(postId);
-//   });
-// });
 
 
 let comment = document.querySelector('.comment-form')
@@ -326,11 +295,7 @@ let comment = document.querySelector('.comment-form')
 
 comment.addEventListener('submit', async (event) => {
   event.preventDefault();
-  //I need get posts id
-  // let open = document.getElementById('createpostid')
-  // let postId = document.getElementById('your_a_tag_id').id;
   let submitId = document.querySelector('.commentSumbitButton')
-  // let open = event.target.id
   let open = submitId.id
   const user = await fetchLoggedInUser();
   let userid = user.id
@@ -340,16 +305,13 @@ comment.addEventListener('submit', async (event) => {
   let data = await handleFetch('/api/comment', options)
 });
 
-//Bulma modal -------
+let modelbody = document.querySelector('.modal-card-body')
+modelbody.addEventListener('click', deletecom)
 
-// let modal = document.querySelector('#modal')
-// let createCommentButton = document.querySelector('.createComment')
-
-// console.log(createCommentButton)
-
-// createCommentButton.addEventListener('click', async () =>{
-//   if(modal.classList.contains('modal')){
-//     modal.classList.add('is-active')
-//   }
-// })
-
+async function deletecom(e){
+  if(e.target.innerHTML = 'delete'){
+    let commentid = e.target.id
+    let options = getFetchOptions({}, 'DELETE')
+    let deletedcom = handleFetch(`/api/comment/${commentid}`, options)
+  }
+}
