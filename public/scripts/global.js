@@ -71,7 +71,7 @@ const setNav = (hasLoggedInUser) => {
     <li><a href="/">Home</a></li>
     <li><a href="./post.html">Make Post</a></li>
     <li><a href="./user.html">Profile</a></li>
-    <li><a href="./index.html">Sign Out</a></li>
+    <li><a href="./user.html">Sign Out</a></li>
   </ul>`;
 
   const navHtml = hasLoggedInUser ? loggedInNavHtml : loggedOutNavHtml;
