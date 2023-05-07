@@ -10,8 +10,7 @@ import {
 const main = async () => {
   const user = await fetchLoggedInUser();
   setNav(!!user);
-  let userid = user.id
-  console.log(userid)
+  let userid = user.id;
 
   const [secret, _err] = await handleFetch('/api/logged-in-secret');
 
@@ -22,8 +21,7 @@ const main = async () => {
   let posts = await handleFetch('/api/post')
 
   posts = posts[0]
-  console.log(posts)
-  let postsection = document.getElementById('post_section')
+  let postsection = document.getElementById('post_section');
   let cardsContainer = document.getElementById('cardsContainer')
   posts.forEach(post =>{
     if(userid === post.user_id){
@@ -62,14 +60,17 @@ const main = async () => {
  let cardFooter = document.createElement('footer')
  cardFooter.classList.add('card-footer')
  
+ let cardFooterDiv = document.createElement('div')
+ cardFooterDiv.style.width = '100%';
+ cardFooterDiv.style.height = '75%';
  
 
  let commentButton = document.createElement('a')
  commentButton.classList.add('card-footer-item')
  commentButton.innerText = 'View Comments'
- let createComment = document.createElement('a')
- createComment.classList.add('card-footer-item')
- createComment.innerText = 'Create Comment'
+//  let createComment = document.createElement('a')
+//  createComment.classList.add('card-footer-item')
+//  createComment.innerText = 'Create Comment'
 
  let deleteComment = document.createElement('a')
  deleteComment.id = post.id
@@ -78,9 +79,13 @@ const main = async () => {
  deleteComment.innerText = 'Delete Comment'
 
  commentButton.id = post.id
- createComment.id = post.id
 
- console.log(createComment.id)
+ cardFooterDiv.appendChild(commentButton)
+ cardFooterDiv.appendChild(deleteComment)
+
+//  createComment.id = post.id
+
+//  console.log(createComment.id)
 
  // let button = document.createElement('button')
  // let createbutton = document.createElement('button')
@@ -94,9 +99,9 @@ const main = async () => {
  card.appendChild(cardHeaderUser)
  cardTextDiv.appendChild(cardText)
  card.appendChild(cardTextDiv)
- cardFooter.appendChild(commentButton)
- cardFooter.appendChild(createComment)
- cardFooter.appendChild(deleteComment)
+ cardFooter.appendChild(cardFooterDiv)
+//  cardFooter.appendChild(createComment)
+//  cardFooter.appendChild(deleteComment)
  card.appendChild(cardFooter)
  // card.appendChild(button)
  // card.appendChild(createbutton)
@@ -127,6 +132,8 @@ const main = async () => {
       //whole card
       let card = document.createElement('div');
       card.classList.add('card')
+      card.classList.add('animate__animated')
+      card.classList.add('animate__backInUp')
       // card.style.maxWidth = '50%';
       card.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.2)';
 
@@ -151,14 +158,14 @@ const main = async () => {
       let commentButton = document.createElement('a')
       commentButton.classList.add('card-footer-item')
       commentButton.innerText = 'View Comments'
-      let createComment = document.createElement('a')
-      createComment.classList.add('card-footer-item')
-      createComment.innerText = 'Create Comment'
+      // let createComment = document.createElement('a')
+      // createComment.classList.add('card-footer-item')
+      // createComment.innerText = 'Create Comment'
 
       commentButton.id = post.id
-      createComment.id = post.id
+      // createComment.id = post.id
 
-      console.log(createComment.id)
+      // console.log(createComment.id)
       // let button = document.createElement('button')
       // let createbutton = document.createElement('button')
       // createbutton.id = post.id
@@ -172,7 +179,7 @@ const main = async () => {
       cardTextDiv.appendChild(cardText)
       card.appendChild(cardTextDiv)
       cardFooter.appendChild(commentButton)
-      cardFooter.appendChild(createComment)
+      // cardFooter.appendChild(createComment)
       card.appendChild(cardFooter)
       // card.appendChild(button)
       // card.appendChild(createbutton)
@@ -189,8 +196,7 @@ main();
 
 
 let topBar = document.querySelector('#main-nav')
-topBar.style.display = "none"
-console.log(topBar)
+topBar.style.display = "none";
 
 
 
@@ -210,11 +216,31 @@ console.log(topBar)
 //   })
 // }
 // showcomments()
-
-
-
 let modal = document.querySelector('#modal')
 let commentsModalSpace = document.querySelector('#commentsModalSpace')
+
+let titleModal = document.querySelector('#modalTitle')
+titleModal.style.color = '#E3CCAE'
+
+let topModal = document.querySelector('.modal-card-head')
+topModal.style.backgroundColor = '#5C469C';
+
+let middleModal = document.querySelector('.modal-card-body')
+middleModal.style.backgroundColor = '#1D267D';
+
+let bottomModal = document.querySelector('.modal-card-foot')
+bottomModal.style.backgroundColor = '#D4ADFC'
+bottomModal.classList.add('is-justify-content-center')
+bottomModal.classList.add('is-align-items-center')
+
+let submit = document.querySelector('.commentSumbitButton')
+submit.classList.add('button')
+submit.classList.add('is-rounded')
+
+let closeModal = document.getElementById('close-commentcreate')
+closeModal.classList.add('button')
+
+
 let button =document.getElementById('post_section');
 button.addEventListener('click', getcomments)
 
@@ -230,34 +256,34 @@ async function getcomments(e){
     comments =comments[0]
     comments.forEach(comment => {
       let commentLi = document.createElement('li')
-      let postId = document.createElement('h1')
-      postId.id = posts_id
+      commentLi.style.color = '#E3CCAE'
+      commentLi.classList.add('is-size-5')
+
+      // let postId = document.createElement('h1')
+      // postId.id = posts_id
       commentLi.innerText = comment.post_text
       commentsModalSpace.appendChild(commentLi)
       // console.log(commentLi, postId);
-      let submit = document.querySelector('.commentSumbitButton')
-    submit.id = posts_id
+      
     })
-    
-
-    console.log(comments)
+    let submit = document.querySelector('.commentSumbitButton')
+      submit.id = posts_id
   }
   else if(text === 'Create Comment'){
     // let modelcontainer = document.getElementById('model-container')
     modal.classList.add('is-active')
     let h1 = document.getElementById('createpostid')
     // h1.innerHTML = posts_id
-    let submit = document.querySelector('.commentSumbitButton')
+    
     submit.id = posts_id
   }
   //for logged in user
-  else if(text === 'Delete post'){
+  else if(text === 'Delete Comment'){
     console.log(posts_id)
     const options  = await getFetchOptions({posts_id}, "DELETE")
     let finaldelete = await handleFetch(`/api/post/${posts_id}`, options)
 
-    console.log(finaldelete)
-  }
+  };
   
 }
 
@@ -273,8 +299,8 @@ async function getcomments(e){
 
 
 
-let close = document.getElementById('close-commentcreate')
-close.addEventListener('click', event => {
+
+closeModal.addEventListener('click', event => {
   modal.classList.remove('is-active')
 })
 
@@ -299,16 +325,12 @@ comment.addEventListener('submit', async (event) =>{
   // let open = document.getElementById('createpostid')
   // let postId = document.getElementById('your_a_tag_id').id;
   let submitId = document.querySelector('.commentSumbitButton')
-  // let postId = e.target.id
+  // let open = event.target.id
   let open = submitId.id
-  console.log(open, 'test')
   const user = await fetchLoggedInUser();
-  console.log(user)
   let userid = user.id
   let formdata = event.target.commentinput.value
-  console.log(formdata, userid)
   let options = await getFetchOptions({"posts_id":open ,"comment_body": formdata, "user_id":userid}, 'POST')
-  console.log(options)
 
   let data = await handleFetch('/api/comment',options)
 });

@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./styles/style.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
   <script type="module" src="./scripts/index.js" defer></script>
   <title>Auth Example</title>
 </head>
@@ -20,7 +21,7 @@
         <nav id="sideBar">
           <a class="is-size-3 pt-6 mt-3" href="./user.html">Profile</a>
           <a class="is-size-3 pt-6 mt-3" href="./post.html">Make Post</a>
-          <a class="is-size-3 pt-6 mt-3" href="#">Sign Out</a>
+          <a class="is-size-3 pt-6 mt-3" href="login.html">Sign Out</a>
         </nav>
       </div>
       <div class="column" id="post_section" style="width: 75%;">
@@ -55,8 +56,8 @@
         </form> -->
         <form class="comment-form" aria-describedby="log-in">
           <h1 id="createpostid"></h1>
-          <label for="Comment_body">Your Comment</label>
-          <input type="text" name="Comment_body" id="commentinput">
+          <!-- <label for="Comment_body">Your Comment</label> -->
+          <input type="text" name="Comment_body" class="input is-rounded is-info" autocomplete="off" placeholder="Type Your Comment Here!" id="commentinput">
           <input class="commentSumbitButton" type="submit" Post Echo/>
         </form>
 
