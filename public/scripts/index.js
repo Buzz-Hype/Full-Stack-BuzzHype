@@ -134,6 +134,8 @@ const main = async () => {
       //whole card
       let card = document.createElement('div');
       card.classList.add('card')
+      card.classList.add('animate__animated')
+      card.classList.add('animate__backInUp')
       // card.style.maxWidth = '50%';
       card.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.2)';
 
