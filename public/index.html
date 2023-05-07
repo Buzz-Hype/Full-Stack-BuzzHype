@@ -48,10 +48,18 @@
         <!-- <p id="instructionsText"></p> -->
       </section>
       <footer class="modal-card-foot" style="text-align: center;">
-        <form class='control' id="search">
+        <!-- <form class='control comment-form' id="search">
           <input class="input is-rounded is-info" autocomplete="off" type="text" placeholder="Type Your Comment Here!"
-            id="searchBar">
+            id="commentinput">
+            <button type="submit" id="createpostid">Please work</button>
+        </form> -->
+        <form class="comment-form" aria-describedby="log-in">
+          <h1 id="createpostid"></h1>
+          <label for="Comment_body">Your Comment</label>
+          <input type="text" name="Comment_body" id="commentinput">
+          <input class="commentSumbitButton" type="submit" Post Echo/>
         </form>
+
       </footer>
 
     </div>

@@ -15,10 +15,10 @@ const main = async () => {
 
   const [secret, _err] = await handleFetch('/api/logged-in-secret');
 
-  console.log('secret, _err:', secret, _err);
-  if (secret) {
-    document.querySelector('#secret-message').textContent = secret.msg;
-  }
+  // console.log('secret, _err:', secret, _err);
+  // if (secret) {
+  //   document.querySelector('#secret-message').textContent = secret.msg;
+  // }
   let posts = await handleFetch('/api/post')
 
   posts = posts[0]
@@ -79,6 +79,8 @@ const main = async () => {
 
  commentButton.id = post.id
  createComment.id = post.id
+
+ console.log(createComment.id)
 
  // let button = document.createElement('button')
  // let createbutton = document.createElement('button')
@@ -156,6 +158,7 @@ const main = async () => {
       commentButton.id = post.id
       createComment.id = post.id
 
+      console.log(createComment.id)
       // let button = document.createElement('button')
       // let createbutton = document.createElement('button')
       // createbutton.id = post.id
@@ -222,14 +225,18 @@ async function getcomments(e){
 
   if(text === 'View Comments'){
     commentsModalSpace.innerText = '';
-    let comments = await handleFetch(`/api/comment/${posts_id}`)
+    let comments = await handleFetch(`/api/post/${posts_id}/comment`)
     modal.classList.add('is-active')
     comments =comments[0]
     comments.forEach(comment => {
       let commentLi = document.createElement('li')
+      // let postId = document.createElement('h1')
+      // postId.id = posts_id
       commentLi.innerText = comment.post_text
       commentsModalSpace.appendChild(commentLi)
-      console.log(commentLi);
+      // console.log(commentLi, postId);
+      let submit = document.querySelector('.commentSumbitButton')
+    submit.id = posts_id
     })
     
 
@@ -240,6 +247,8 @@ async function getcomments(e){
     modal.classList.add('is-active')
     let h1 = document.getElementById('createpostid')
     // h1.innerHTML = posts_id
+    let submit = document.querySelector('.commentSumbitButton')
+    submit.id = posts_id
   }
   //for logged in user
   else if(text === 'Delete post'){
@@ -270,22 +279,39 @@ close.addEventListener('click', event => {
 })
 
 
-// let comment = document.querySelector('.comment-form')
-// comment.addEventListener('submit', async (event) =>{
-//   event.preventDefault();
-//   //I need get posts id
-//   let open = document.getElementById('createpostid')
-//   open = open.innerHTML
-//   // console.log(open)
-//   const user = await fetchLoggedInUser();
-//   console.log(user)
-//   let userid = user.id
-//   let formdata = event.target.commentinput.value
-//   console.log(formdata, userid)
-//   let options = await getFetchOptions({"posts_id":open ,"comment_body": formdata, "user_id":userid}, 'POST')
-//   console.log(options)
-//   let data = await handleFetch('/api/comment',options)
+// let aTags = document.querySelectorAll('a');
+//  let postId = undefined;
+
+// aTags.forEach(function(a) {
+//   a.addEventListener('click', function() {
+//     postId = a.id;
+//     console.log(postId);
+//   });
 // });
+
+
+let comment = document.querySelector('.comment-form')
+
+
+comment.addEventListener('submit', async (event) =>{
+  event.preventDefault();
+  //I need get posts id
+  // let open = document.getElementById('createpostid')
+  // let postId = document.getElementById('your_a_tag_id').id;
+  let submitId = document.querySelector('.commentSumbitButton')
+  // let postId = e.target.id
+  let open = submitId.id
+  console.log(open, 'test')
+  const user = await fetchLoggedInUser();
+  console.log(user)
+  let userid = user.id
+  let formdata = event.target.commentinput.value
+  console.log(formdata, userid)
+  let options = await getFetchOptions({"posts_id":open ,"comment_body": formdata, "user_id":userid}, 'POST')
+  console.log(options)
+
+  let data = await handleFetch('/api/comment',options)
+});
 
 //Bulma modal -------
 
