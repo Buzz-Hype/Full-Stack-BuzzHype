@@ -6,11 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./styles/style.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
   <script type="module" defer src="./scripts/create.js"></script>
   <title>Sign Up</title>
 </head>
 <body style="background-color: #4D4C7D;">
-  <nav id="main-nav"></nav>
+  <nav id="main-nav"  class="is-hiddenNav"></nav>
   <main>
     <div class="container mt-6 pt-6" id="container">
       <div class="columns is-vcentered is-centered is-variable is-1-mobile is-6-desktop">
@@ -20,8 +21,8 @@
           <img src="/assets/EElogoPurple.png" class="mt-2" alt="logo">
         </div>
         <div class="column is-half  ">
-          <div class="box" style="background-color: #363062; color: #fff;" id="log-inBox">
-            <h2 class="is-size-3" id="log-in">Sign Up</h2>
+          <div class="box animate__animated animate__pulse" style="background-color: #363062; color: #fff;" id="log-inBox">
+            <h2 class="is-size-3 has-text-centered" id="log-in">Sign Up</h2>
             <form id="create-form" aria-describedby="sign-up">
               <div class="field">
                 <label class="label" style="color: #D36B00;" for="username">Username</label>
@@ -39,6 +40,9 @@
                 <div class="control has-text-centered mt-6">
                   <button style="color: #827397" class="button" type="submit">Sign up!</button>
                 </div>
+              </div>
+              <div class="has-text-centered pt-1">
+                <a href="login.html" id="linkToSignUpPage" class="has-text-white">Already have an account?</a> <!-- Maybe supposed to be an a tag -->
               </div>
             </form>
           </div>

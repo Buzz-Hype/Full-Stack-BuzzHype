@@ -12,7 +12,8 @@
   <title>Log in</title>
 </head>
 <body style="background-color: #4D4C7D;">
-  <nav id="main-nav"></nav>
+  <!-- class="is-hiddenNav" -->
+  <nav id="main-nav" class="is-hiddenNav" ></nav>
   <main>
     <div class="container mt-6 pt-6" id="container">
       <div class="columns is-vcentered is-centered is-variable is-1-mobile is-6-desktop">
@@ -21,9 +22,9 @@
           <p style="color: #E9D5CA;" class="is-family-monospace is-size-4">A platform that Echos your opinion</p>
           <img src="/assets/EElogoPurple.png" class="mt-2" alt="logo">
         </div>
-        <div class="column is-half  ">
+        <div class="column is-half ">
           <div class="box animate__animated animate__pulse" style="background-color: #363062; color: #fff;" id="log-inBox">
-            <h2 class="is-size-3" id="log-in">Log In</h2>
+            <h2 class="is-size-3 has-text-centered" id="log-in">Log In!</h2>
             <form id="create-form" aria-describedby="log-in">
               <div class="field">
                 <label class="label" style="color: #D36B00;" for="username">Username</label>
@@ -41,6 +42,9 @@
                 <div class="control has-text-centered mt-6">
                   <button style="color: #827397" class="button" type="submit">Log in!</button>
                 </div>
+              </div>
+              <div class="has-text-centered pt-1">
+                <a href="create.html" id="linkToSignUpPage" class=" has-text-white">Don't have an account yet?</a> <!-- Maybe supposed to be an a tag -->
               </div>
             </form>
           </div>

@@ -5,7 +5,7 @@ body {
 
 main {
   width: 100vw;
-  min-height: 100vh;
+  min-height: 80vh;
   margin: 0 auto;
 }
 
@@ -33,7 +33,7 @@ nav ul li:first-child {
 /* #secret-container {
   text-align: center;
   border: black 1px dashed;
-} */
+} */username
 
 
 #log-in{
@@ -182,3 +182,7 @@ nav ul li:first-child {
 /* .card-footer {
   width: 100%;
 } */
+
+.is-hiddenNav a {
+  display: none;
+}
