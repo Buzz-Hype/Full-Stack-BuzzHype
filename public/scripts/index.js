@@ -249,6 +249,7 @@ async function getcomments(e){
   let text = e.target.innerHTML
   let posts_id = e.target.id
 
+
   if(text === 'View Comments'){
     commentsModalSpace.innerText = '';
     let comments = await handleFetch(`/api/post/${posts_id}/comment`)
@@ -268,6 +269,7 @@ async function getcomments(e){
     })
     let submit = document.querySelector('.commentSumbitButton')
       submit.id = posts_id
+
   }
   else if(text === 'Create Comment'){
     // let modelcontainer = document.getElementById('model-container')
