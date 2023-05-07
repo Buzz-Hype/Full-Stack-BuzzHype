@@ -8,6 +8,8 @@
   <link rel="stylesheet" href="./styles/style.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-Yvh4HzMJ4f+ItOvw8WGFJfGCv6OxtU6XdYaU0Tc1jL3J6cSS+2Q0ZPwNV8Fv2/x1PVJcVOGX04McIggbC1+9XQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   <script type="module" src="./scripts/login.js"></script>
   <title>Log in</title>
 </head>
@@ -21,9 +23,9 @@
           <p style="color: #E9D5CA;" class="is-family-monospace is-size-4">A platform that Echos your opinion</p>
           <img src="/assets/EElogoPurple.png" class="mt-2" alt="logo">
         </div>
-        <div class="column is-half  ">
+        <div class="column is-half ">
           <div class="box animate__animated animate__pulse" style="background-color: #363062; color: #fff;" id="log-inBox">
-            <h2 class="is-size-3" id="log-in">Log In</h2>
+            <h2 class="is-size-3 has-text-centered" id="log-in">Log In!</h2>
             <form id="create-form" aria-describedby="log-in">
               <div class="field">
                 <label class="label" style="color: #D36B00;" for="username">Username</label>
@@ -41,6 +43,9 @@
                 <div class="control has-text-centered mt-6">
                   <button style="color: #827397" class="button" type="submit">Log in!</button>
                 </div>
+              </div>
+              <div>
+                <a href="create.html" id="linkToSignUpPage">Don't have an account yet?</a> <!-- Maybe supposed to be an a tag -->
               </div>
             </form>
           </div>
