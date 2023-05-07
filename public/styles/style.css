@@ -181,3 +181,7 @@ nav ul li:first-child {
 /* .card-footer {
   width: 100%;
 } */
+
+.is-hiddenNav a {
+  display: none;
+}
