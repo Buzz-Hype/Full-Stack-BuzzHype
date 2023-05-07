@@ -10,8 +10,7 @@ import {
 const main = async () => {
   const user = await fetchLoggedInUser();
   setNav(!!user);
-  let userid = user.id
-  console.log(userid)
+  let userid = user.id;
 
   const [secret, _err] = await handleFetch('/api/logged-in-secret');
 
@@ -22,8 +21,7 @@ const main = async () => {
   let posts = await handleFetch('/api/post')
 
   posts = posts[0]
-  console.log(posts)
-  let postsection = document.getElementById('post_section')
+  let postsection = document.getElementById('post_section');
   let cardsContainer = document.getElementById('cardsContainer')
   posts.forEach(post => {
     if (userid === post.user_id) {
@@ -201,8 +199,7 @@ main();
 
 
 let topBar = document.querySelector('#main-nav')
-topBar.style.display = "none"
-console.log(topBar)
+topBar.style.display = "none";
 
 
 
@@ -255,7 +252,8 @@ async function getcomments(e) {
   let text = e.target.innerHTML
   let posts_id = e.target.id
 
-  if (text === 'View Comments') {
+
+  if(text === 'View Comments'){
     commentsModalSpace.innerText = '';
     let comments = await handleFetch(`/api/post/${posts_id}/comment`)
     modal.classList.add('is-active')
@@ -270,12 +268,11 @@ async function getcomments(e) {
       commentLi.innerText = comment.post_text
       commentsModalSpace.appendChild(commentLi)
       // console.log(commentLi, postId);
-      let submit = document.querySelector('.commentSumbitButton')
-      submit.id = posts_id
+      
     })
+    let submit = document.querySelector('.commentSumbitButton')
+      submit.id = posts_id
 
-
-    console.log(comments)
   }
   else if (text === 'Create Comment') {
     // let modelcontainer = document.getElementById('model-container')
@@ -286,14 +283,13 @@ async function getcomments(e) {
     submit.id = posts_id
   }
   //for logged in user
-  else if (text === 'Delete post') {
+  else if(text === 'Delete Comment'){
     console.log(posts_id)
     const options = await getFetchOptions({ posts_id }, "DELETE")
     let finaldelete = await handleFetch(`/api/post/${posts_id}`, options)
 
-    console.log(finaldelete)
-  }
-
+  };
+  
 }
 
 
@@ -334,16 +330,12 @@ comment.addEventListener('submit', async (event) => {
   // let open = document.getElementById('createpostid')
   // let postId = document.getElementById('your_a_tag_id').id;
   let submitId = document.querySelector('.commentSumbitButton')
-  // let postId = e.target.id
+  // let open = event.target.id
   let open = submitId.id
-  console.log(open, 'test')
   const user = await fetchLoggedInUser();
-  console.log(user)
   let userid = user.id
   let formdata = event.target.commentinput.value
-  console.log(formdata, userid)
-  let options = await getFetchOptions({ "posts_id": open, "comment_body": formdata, "user_id": userid }, 'POST')
-  console.log(options)
+  let options = await getFetchOptions({"posts_id":open ,"comment_body": formdata, "user_id":userid}, 'POST')
 
   let data = await handleFetch('/api/comment', options)
 });

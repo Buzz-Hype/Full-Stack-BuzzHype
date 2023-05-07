@@ -58,21 +58,22 @@ nav ul li:first-child {
 }
 
 /* @media only screen and (max-width: 768px) {
+
 /* 
-@media only screen and (max-width: 768px) {
+@m
   #container {
     margin-top: 0;
     padding-top: 0;
   }
 } */
 
-/* .model-container{
+.model-container{
   box-sizing: border-box;
-  /* display: flex;
+  display: flex;
   align-items: center;
   min-height: 100vh;
-  margin: 0; */
-/* } */
+  margin: 0;
+}
 
 .model-container{
   background-color: cadetblue;
