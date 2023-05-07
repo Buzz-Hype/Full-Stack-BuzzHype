@@ -180,6 +180,8 @@ async function getcomments(e){
     modal.classList.add('is-active')
     comments =comments[0]
     comments.forEach(comment => {
+      console.log(comment)
+      console.log(user.id)
       let commentLi = document.createElement('li')
       commentLi.style.color = '#E3CCAE'
       commentLi.classList.add('is-size-5')
@@ -191,7 +193,7 @@ async function getcomments(e){
       commentsModalSpace.appendChild(username)
       commentsModalSpace.appendChild(commentLi)
       commentsModalSpace.appendChild(br)
-      if(user.id = comment.user_id){
+      if(user.id === comment.user_id){
         let delcomment = document.createElement('button')
         delcomment.innerHTML = "delete"
         delcomment.id = comment.id
