@@ -80,6 +80,8 @@ const main = async () => {
  commentButton.id = post.id
  createComment.id = post.id
 
+ console.log(createComment.id)
+
  // let button = document.createElement('button')
  // let createbutton = document.createElement('button')
  // createbutton.id = post.id
@@ -156,6 +158,7 @@ const main = async () => {
       commentButton.id = post.id
       createComment.id = post.id
 
+      console.log(createComment.id)
       // let button = document.createElement('button')
       // let createbutton = document.createElement('button')
       // createbutton.id = post.id
@@ -231,7 +234,9 @@ async function getcomments(e){
       postId.id = posts_id
       commentLi.innerText = comment.post_text
       commentsModalSpace.appendChild(commentLi)
-      console.log(commentLi, posts_id);
+      // console.log(commentLi, postId);
+      let submit = document.querySelector('.commentSumbitButton')
+    submit.id = posts_id
     })
     
 
@@ -241,7 +246,9 @@ async function getcomments(e){
     // let modelcontainer = document.getElementById('model-container')
     modal.classList.add('is-active')
     let h1 = document.getElementById('createpostid')
-    h1.innerHTML = posts_id
+    // h1.innerHTML = posts_id
+    let submit = document.querySelector('.commentSumbitButton')
+    submit.id = posts_id
   }
   //for logged in user
   else if(text === 'Delete post'){
@@ -272,13 +279,29 @@ close.addEventListener('click', event => {
 })
 
 
+// let aTags = document.querySelectorAll('a');
+//  let postId = undefined;
+
+// aTags.forEach(function(a) {
+//   a.addEventListener('click', function() {
+//     postId = a.id;
+//     console.log(postId);
+//   });
+// });
+
+
 let comment = document.querySelector('.comment-form')
+
+
 comment.addEventListener('submit', async (event) =>{
   event.preventDefault();
   //I need get posts id
   // let open = document.getElementById('createpostid')
-  let open = event.target.id[1]
-  // console.log(open, 'test')
+  // let postId = document.getElementById('your_a_tag_id').id;
+  let submitId = document.querySelector('.commentSumbitButton')
+  // let postId = e.target.id
+  let open = submitId.id
+  console.log(open, 'test')
   const user = await fetchLoggedInUser();
   console.log(user)
   let userid = user.id
