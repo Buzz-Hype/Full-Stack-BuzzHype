@@ -231,7 +231,7 @@ async function getcomments(e){
       // postId.id = posts_id
       commentLi.innerText = comment.post_text
       commentsModalSpace.appendChild(commentLi)
-      console.log(commentLi, postId);
+      // console.log(commentLi, postId);
     })
     
 
@@ -272,12 +272,24 @@ close.addEventListener('click', event => {
 })
 
 
+let aTags = document.querySelectorAll('a');
+ let postId = undefined;
+
+aTags.forEach(function(a) {
+  a.addEventListener('click', function() {
+    postId = a.id;
+    console.log(postId);
+  });
+});
+
+
 let comment = document.querySelector('.comment-form')
 comment.addEventListener('submit', async (event) =>{
   event.preventDefault();
   //I need get posts id
   // let open = document.getElementById('createpostid')
-  let open = event.target.id
+  // let postId = document.getElementById('your_a_tag_id').id;
+  let open = postId
   console.log(open, 'test')
   const user = await fetchLoggedInUser();
   console.log(user)
